@@ -26,6 +26,9 @@ import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config
 import { PrimengModule } from './primeng/primeng.module';
 import { MessagesModule } from "primeng/messages";
 import { MessageModule } from "primeng/message";
+import { StoreModule } from '@ngrx/store';
+import { appReducers } from './app.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,9 @@ import { MessageModule } from "primeng/message";
     provideRemoteConfig(() => getRemoteConfig()),
     PrimengModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    StoreModule.forRoot( appReducers ),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
