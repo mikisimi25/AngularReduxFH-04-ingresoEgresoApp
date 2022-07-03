@@ -23,12 +23,13 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
-import { PrimengModule } from './primeng/primeng.module';
 import { MessagesModule } from "primeng/messages";
 import { MessageModule } from "primeng/message";
 import { StoreModule } from '@ngrx/store';
 import { appReducers } from './app.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { OrdenIngresoPipe } from './pipes/orden-ingreso.pipe';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     DetalleComponent,
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    OrdenIngresoPipe
   ],
   imports: [
     BrowserModule,
@@ -54,11 +56,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideRemoteConfig(() => getRemoteConfig()),
-    PrimengModule,
     MessagesModule,
     MessageModule,
     StoreModule.forRoot( appReducers ),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
